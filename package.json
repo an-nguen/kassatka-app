@@ -1,0 +1,29 @@
+{
+  "name": "kassatka-app",
+  "packageManager": "yarn@3.4.1",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build:core": "yarn workspace @kassatka/core build",
+    "dev:server": "yarn workspace server start:dev",
+    "dev:client": "yarn workspace client start",
+    "dev:all": "yarn workspace server start:dev && yarn workspace client start"
+  },
+  "devDependencies": {
+    "@angular-eslint/builder": "15.2.1",
+    "@angular-eslint/eslint-plugin": "^15.2.1",
+    "@angular-eslint/eslint-plugin-template": "15.2.1",
+    "@angular-eslint/schematics": "15.2.1",
+    "@angular-eslint/template-parser": "15.2.1",
+    "@typescript-eslint/eslint-plugin": "latest",
+    "@typescript-eslint/parser": "latest",
+    "eslint": "latest",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-import": "^2.27.5",
+    "prettier": "^2.8.4",
+    "typescript": "^4.9.5"
+  }
+}
