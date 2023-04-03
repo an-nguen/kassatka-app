@@ -46,7 +46,6 @@ module.exports = {
       extends: ['plugin:@angular-eslint/template/recommended'],
       rules: {},
     },
-    //
     {
       files: ['./packages/server/**/*.ts'],
       rules: {
@@ -56,11 +55,41 @@ module.exports = {
         '@typescript-eslint/no-explicit-any': 'off',
       },
     },
+    // Angular library
+    {
+      files: ['./packages/client/projects/**/*.ts'],
+      rules: {
+        '@angular-eslint/directive-selector': [
+          'error',
+          {
+            type: 'attribute',
+            prefix: 'lib',
+            style: 'camelCase',
+          },
+        ],
+        '@angular-eslint/component-selector': [
+          'error',
+          {
+            type: 'element',
+            prefix: 'lib',
+            style: 'kebab-case',
+          },
+        ],
+      },
+    },
+    {
+      files: ['./packages/client/projects/**/*.html'],
+      rules: {},
+    },
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     tsconfigRootDir: __dirname,
-    project: ['./tsconfig.eslint.json', './packages/*/tsconfig.json'],
+    project: [
+      './tsconfig.eslint.json',
+      './packages/*/tsconfig.json',
+      './packages/client/projects/*/tsconfig.json',
+    ],
     ecmaVersion: 'latest',
   },
   root: true,
