@@ -1,7 +1,17 @@
-<table class="main">
-  <thead>
-  <th *ngFor="let header of headers">
-    <tr>{{header.columnName}}</tr>
-  </th>
-  </thead>
-</table>
+<div class='table-wrapper'>
+  <table class="main">
+    <thead>
+    <th *ngFor="let header of headers">
+      <tr>{{header.columnName}}</tr>
+    </th>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of items">
+      <td *ngFor="let header of headers">
+        {{ toRecord(item)[header.propertyName] }}
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+

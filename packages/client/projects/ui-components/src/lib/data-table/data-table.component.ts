@@ -12,4 +12,8 @@ export class DataTableComponent<TData> {
 
   @Input()
   headers: DataTableHeader<TData>[] = []
+
+  toRecord(item: TData): Record<string, unknown> {
+    return item as Record<string, unknown>
+  }
 }
