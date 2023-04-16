@@ -1,0 +1,14 @@
+:host {
+  height: 100vh;
+  display: inline-flex;
+}
+
+.nav-container {
+  height: 100%;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: space-around;
+  justify-content: flex-start;
+  align-items: center;
+}
+

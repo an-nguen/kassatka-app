@@ -10,6 +10,7 @@
   "scripts": {
     "build:core": "yarn workspace @kassatka/core build",
     "dev:server": "yarn workspace server start:dev",
+    "dev:client-ui-components": "yarn workspace client ui-components:watch",
     "dev:client": "yarn workspace client start",
     "dev:all": "yarn workspace server start:dev && yarn workspace client start"
   },
