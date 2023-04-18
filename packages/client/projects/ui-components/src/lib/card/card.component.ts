@@ -14,12 +14,5 @@ export class CardComponent {
   title = ''
 
   @Input()
-  styles = {
-    backgroundColor: DEFAULT_PRIMARY_COLOR,
-    width: 'min-content',
-    fontFamily: DEFAULT_FONT_FAMILY,
-  }
-
-  @Input()
   cardContentFontColor = ''
 }

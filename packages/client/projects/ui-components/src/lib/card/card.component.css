@@ -1,22 +1,26 @@
 :host {
-  --card-title-font-size: 18px;
-  --card-content-font-size: 14px;
-  --card-component-margin: 7px;
-  --card-padding: 10px;
-  --card-border-radius: 12px;
+  --card-title-font-size: 1.4em;
+  --card-content-font-size: 1em;
+  --card-component-margin: 0.5rem;
+  --card-padding: 0.5em;
+  --card-border-radius: 0.7em;
 }
 
 .card {
   display: flex;
-  padding: var(--card-padding);
   flex-direction: column;
+
+  background-color: var(--primary-color);
+  color: var(--on-primary-color);
+
+  padding: var(--card-padding);
   border-radius: var(--card-border-radius);
 }
 
 .card-component {
   display: flex;
   width: max-content;
-  font-family: inherit;
+  font-family: var(--default-font-family);
   margin: var(--card-component-margin);
 }
 

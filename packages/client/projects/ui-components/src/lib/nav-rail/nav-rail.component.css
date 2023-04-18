@@ -7,8 +7,9 @@
   height: 100%;
   flex-direction: column;
   flex-wrap: wrap;
-  align-content: space-around;
-  justify-content: flex-start;
   align-items: center;
+  width: var(--nav-rail-width);
+  color: var(--on-primary-color);
+  background-color: var(--primary-color);
 }
 

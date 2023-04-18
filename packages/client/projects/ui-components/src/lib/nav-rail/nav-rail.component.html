@@ -1,6 +1,6 @@
-<div class="nav-container" [ngStyle]="styles">
+<div class="nav-container" >
   <div class="nav-app-icon">
-    Test
+    <ng-content select="[app-icon]"></ng-content>
   </div>
   <div class="nav-list">
     <ng-content></ng-content>
