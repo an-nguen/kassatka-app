@@ -16,12 +16,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
     ProductListComponent,
     DashboardComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FontAwesomeModule,
-    UiComponentsModule,
-  ],
+  imports: [BrowserModule, AppRoutingModule, UiComponentsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

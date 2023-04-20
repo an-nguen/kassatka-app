@@ -1,9 +1,7 @@
-<div class="nav-item-container" [ngStyle]="navContainerStyles">
-  <div class="nav-item-icon">
-    <ng-content select="[icon]"></ng-content>
-  </div>
-  <ng-template class="nav-item-title" *ngIf="expanded">
-    <ng-content></ng-content>
-  </ng-template>
+<div class="nav-item-icon">
+  <ng-content select="[icon]"></ng-content>
 </div>
+<ng-template class="nav-item-title" *ngIf="expanded">
+  <ng-content></ng-content>
+</ng-template>
 

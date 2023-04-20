@@ -1,0 +1,22 @@
+@use 'default';
+
+:host {
+  --nav-rail-width: var(--uc-nav-rail-width, #{default.$nav-rail-width});
+  --nav-item-height: var(--nav-rail-width);
+  --nav-item-width: var(--nav-rail-width);
+
+  display: flex;
+  height: 100vh;
+  width: var(--nav-rail-width);
+  font: inherit;
+
+  color: var(--on-primary-color);
+  background-color: var(--primary-color);
+
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  .nav-list {
+    width: 100%;
+  }
+}

@@ -1,0 +1,24 @@
+:host {
+  display: flex;
+  flex-grow: 1;
+  height: var(--nav-item-height);
+  width: var(--nav-item-width);
+
+  cursor: pointer;
+
+  .nav-item-icon {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25em;
+    color: var(--on-primary-color);
+  }
+
+  &:hover {
+    background-color: var(--secondary-color);
+    color: var(--on-secondary-color);
+  }
+}
+
+

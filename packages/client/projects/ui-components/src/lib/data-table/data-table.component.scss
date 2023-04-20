@@ -1,0 +1,23 @@
+@use "default";
+
+:host {
+  --table-border-width: var(--uc-table-border-width, #{default.$table-border-width});
+  --table-border-style: var(--uc-table-border-style, #{default.$table-border-style});
+  --table-border-radius: var(--uc-table-border-radius, #{default.$table-border-radius});
+}
+
+.table-wrapper {
+  display: flex;
+  width: 100%;
+  border-width: var(--table-border-width);
+  border-style: var(--table-border-style);
+  border-color: var(--primary-color);
+  border-radius: var(--table-border-radius);
+}
+
+.main {
+  display: flex;
+  width: 100%;
+}
+
+

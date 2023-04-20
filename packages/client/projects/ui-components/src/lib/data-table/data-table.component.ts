@@ -4,7 +4,7 @@ import { DataTableHeader } from '../data-table-header'
 @Component({
   selector: 'lib-data-table',
   templateUrl: './data-table.component.html',
-  styleUrls: ['./data-table.component.css'],
+  styleUrls: ['./data-table.component.scss'],
 })
 export class DataTableComponent<TData> {
   @Input()
