@@ -1,0 +1,10 @@
+@use 'variables';
+
+:host {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  font-size: inherit;
+  font-family: inherit;
+  padding: variables.$app-container-padding-y variables.$app-container-padding-x;
+}

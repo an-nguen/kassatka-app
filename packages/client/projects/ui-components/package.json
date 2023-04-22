@@ -1,6 +1,14 @@
 {
   "name": "ui-components",
   "version": "0.0.1",
+  "exports": {
+    ".": {
+      "sass": "./index.scss"
+    },
+    "./styles/dark-theme": {
+      "sass": "./src/styles/_dark-theme.scss"
+    }
+  },
   "peerDependencies": {
     "@angular/common": "^15.2.0",
     "@angular/core": "^15.2.0",

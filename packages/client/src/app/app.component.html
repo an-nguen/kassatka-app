@@ -1,11 +1,11 @@
-<lib-app-layout [(navRailExpanded)]="expanded">
-  <ng-container nav>
-    <lib-nav-item [icon]="faBars" [(expanded)]="expanded" (clicked)="expanded = !expanded">
-      Collapse
-    </lib-nav-item>
-    <lib-nav-item [icon]="faFileInvoice" [(expanded)]="expanded">
-      Документы
-    </lib-nav-item>
-  </ng-container>
+<lib-nav-rail [(expanded)]="expanded">
+  <lib-nav-item [icon]="faBars" (clicked)="expanded = !expanded">
+    Закрыть
+  </lib-nav-item>
+  <lib-nav-item [icon]="faFileInvoice">
+    Документы
+  </lib-nav-item>
+</lib-nav-rail>
+<lib-app-content>
   <router-outlet></router-outlet>
-</lib-app-layout>
+</lib-app-content>

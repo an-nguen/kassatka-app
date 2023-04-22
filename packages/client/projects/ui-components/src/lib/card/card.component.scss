@@ -1,34 +1,27 @@
-@use 'default';
+@use 'variables';
 
 :host {
-  --card-title-font-size: var(--uc-card-title-font-size, #{default.$card-title-font-size});
-  --card-title-font-weight: var(--uc-card-title-font-weight, #{default.$card-title-font-weight});
-  --card-content-font-size: var(--uc-card-content-font-size, #{default.$card-content-font-size});
-  --card-padding: var(--uc-card-padding, #{default.$card-padding});
-  --card-border-radius: var(--uc-card-border-radius, #{default.$card-border-radius});
-
   display: flex;
   flex-direction: column;
-  font: inherit;
+  font: var(--uc-font);
 
-  background-color: var(--primary-color);
-  color: var(--on-primary-color);
+  background-color: var(--uc-primary-color);
+  color: var(--uc-on-primary-color);
 
-  padding: var(--card-padding);
-  border-radius: var(--card-border-radius);
+  padding: variables.$card-padding;
+  border-radius: variables.$card-border-radius;
   .card-component {
     display: flex;
     width: max-content;
-    font-family: var(--font-family);
-    margin: var(--uc-card-component-margin);
+    font-family: var(--uc-font-family);
 
     &.title {
-      font-size: var(--card-title-font-size);
-      font-weight: var(--card-title-font-weight);
+      font-size: variables.$card-title-font-size;
+      font-weight: variables.$card-title-font-weight;
     }
 
     &.content {
-      font-size: var(--card-content-font-size);
+      font-size: variables.$card-content-font-size;
     }
   }
 }

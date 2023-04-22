@@ -1,0 +1,9 @@
+@use "./src/styles/variables";
+
+:root {
+  --uc-font: #{variables.$font};
+  --uc-primary-color: #{variables.$primary-color};
+  --uc-on-primary-color: #{variables.$on-primary-color};
+  --uc-secondary-color: #{variables.$secondary-color};
+  --uc-on-secondary-color: #{variables.$on-secondary-color};
+}

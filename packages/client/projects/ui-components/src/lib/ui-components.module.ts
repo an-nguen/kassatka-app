@@ -6,8 +6,8 @@ import { CardComponent } from './card/card.component'
 import { NavRailComponent } from './nav-rail/nav-rail.component'
 import { NavItemComponent } from './nav-item/nav-item.component'
 import { RoundIconButtonComponent } from './round-icon-button/round-icon-button.component'
-import { AppLayoutComponent } from './app-layout/app-layout.component'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { AppContentComponent } from './app-content/app-content.component'
 
 @NgModule({
   declarations: [
@@ -17,7 +17,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
     NavRailComponent,
     NavItemComponent,
     RoundIconButtonComponent,
-    AppLayoutComponent,
+    AppContentComponent,
   ],
   imports: [NgForOf, NgStyle, NgIf, FontAwesomeModule],
   exports: [
@@ -27,7 +27,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
     NavRailComponent,
     NavItemComponent,
     RoundIconButtonComponent,
-    AppLayoutComponent,
+    AppContentComponent,
   ],
 })
 export class UiComponentsModule {}

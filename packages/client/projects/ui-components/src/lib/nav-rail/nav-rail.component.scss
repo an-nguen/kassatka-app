@@ -1,18 +1,12 @@
-@use 'default';
+@use 'variables';
 
 :host {
-  --nav-rail-width-collapsed: var(--uc-nav-rail-width-collapsed, #{default.$nav-rail-width-collapsed});
-  --nav-rail-width-expanded: var(--uc-nav-rail-width-expanded, #{default.$nav-rail-width-expanded});
-  --nav-item-height: var(--nav-rail-width-collapsed);
-  --nav-item-width: var(--nav-rail-width-collapsed);
-
   display: flex;
   height: 100vh;
-  width: var(--nav-rail-width-collapsed);
-  font: inherit;
+  width: variables.$nav-rail-width-collapsed;
 
-  color: var(--on-primary-color);
-  background-color: var(--primary-color);
+  color: var(--uc-on-primary-color);
+  background-color: var(--uc-primary-color);
 
   flex-direction: column;
   flex-wrap: wrap;
@@ -22,6 +16,6 @@
   }
 
   &.expanded {
-    width: var(--nav-rail-width-expanded);
+    width: variables.$nav-rail-width-expanded;
   }
 }

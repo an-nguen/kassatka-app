@@ -1,17 +1,19 @@
+@use 'variables';
+
 :host {
   display: flex;
-  font: inherit;
-  height: var(--nav-item-height);
+  font: var(--uc-font);
+  height: variables.$nav-item-height;
 
   cursor: pointer;
 
   .nav-item-icon {
     display: flex;
-    width: var(--nav-item-height);
-    height: var(--nav-item-height);
+    width: variables.$nav-item-height;
+    height: variables.$nav-item-height;
     align-items: center;
     justify-content: center;
-    color: var(--on-primary-color);
+    color: var(--uc-on-primary-color);
   }
 
   .nav-item-title {
@@ -21,8 +23,8 @@
   &.expanded {
     .nav-item-icon {
       display: flex;
-      width: var(--nav-item-height);
-      height: var(--nav-item-height);
+      width: variables.$nav-item-height;
+      height: variables.$nav-item-height;
       align-items: center;
       justify-content: center;
     }
@@ -31,18 +33,18 @@
       align-items: center;
       justify-content: center;
       padding-left: 0.5em;
-
+      font: var(--uc-font);
     }
   }
 
   &.active {
-    color: var(--on-secondary-color);
-    background-color: var(--secondary-color);
+    color: var(--uc-on-secondary-color);
+    background-color: var(--uc-secondary-color);
   }
 
   &:hover {
-    background-color: var(--secondary-color);
-    color: var(--on-secondary-color);
+    background-color: var(--uc-secondary-color);
+    color: var(--uc-on-secondary-color);
   }
 }
 
