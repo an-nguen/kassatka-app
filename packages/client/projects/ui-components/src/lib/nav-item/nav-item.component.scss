@@ -1,18 +1,43 @@
 :host {
   display: flex;
-  flex-grow: 1;
+  font: inherit;
   height: var(--nav-item-height);
-  width: var(--nav-item-width);
 
   cursor: pointer;
 
   .nav-item-icon {
     display: flex;
-    width: 100%;
+    width: var(--nav-item-height);
+    height: var(--nav-item-height);
     align-items: center;
     justify-content: center;
-    font-size: 1.25em;
     color: var(--on-primary-color);
+  }
+
+  .nav-item-title {
+    display: none;
+  }
+
+  &.expanded {
+    .nav-item-icon {
+      display: flex;
+      width: var(--nav-item-height);
+      height: var(--nav-item-height);
+      align-items: center;
+      justify-content: center;
+    }
+    .nav-item-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-left: 0.5em;
+
+    }
+  }
+
+  &.active {
+    color: var(--on-secondary-color);
+    background-color: var(--secondary-color);
   }
 
   &:hover {

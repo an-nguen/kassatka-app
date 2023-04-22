@@ -1,8 +1,11 @@
-<lib-app-layout>
-  <div nav>
-    <lib-nav-item>
-      <fa-icon [icon]="faFileInvoice"></fa-icon>
+<lib-app-layout [(navRailExpanded)]="expanded">
+  <ng-container nav>
+    <lib-nav-item [icon]="faBars" [(expanded)]="expanded" (clicked)="expanded = !expanded">
+      Collapse
     </lib-nav-item>
-  </div>
+    <lib-nav-item [icon]="faFileInvoice" [(expanded)]="expanded">
+      Документы
+    </lib-nav-item>
+  </ng-container>
   <router-outlet></router-outlet>
 </lib-app-layout>

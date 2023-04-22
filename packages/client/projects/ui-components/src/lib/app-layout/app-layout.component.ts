@@ -1,4 +1,11 @@
-import { Component, HostBinding, OnDestroy } from '@angular/core'
+import {
+  Component,
+  EventEmitter,
+  HostBinding,
+  Input,
+  OnDestroy,
+  Output,
+} from '@angular/core'
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout'
 import { Subject, takeUntil } from 'rxjs'
 
@@ -9,6 +16,8 @@ import { Subject, takeUntil } from 'rxjs'
 })
 export class AppLayoutComponent implements OnDestroy {
   destroyed = new Subject<void>()
+  @Input() navRailExpanded = false
+  @Output() navRailExpandedChange = new EventEmitter<boolean>()
   @HostBinding('class.small') small = false
 
   constructor(breakpointObserver: BreakpointObserver) {
@@ -19,8 +28,9 @@ export class AppLayoutComponent implements OnDestroy {
         this.small = result.breakpoints[Breakpoints.XSmall]
       })
   }
+
   ngOnDestroy(): void {
-    console.log('app-layout destroyd')
+    console.log('app-layout destroyed')
     this.destroyed.next()
     this.destroyed.complete()
   }

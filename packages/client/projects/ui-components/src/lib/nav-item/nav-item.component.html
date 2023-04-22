@@ -1,7 +1,7 @@
-<div class="nav-item-icon">
-  <ng-content select="[icon]"></ng-content>
-</div>
-<ng-template class="nav-item-title" *ngIf="expanded">
+<span class="nav-item-icon">
+  <fa-icon [icon]="icon"></fa-icon>
+</span>
+<span class="nav-item-title">
   <ng-content></ng-content>
-</ng-template>
+</span>
 

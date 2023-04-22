@@ -1,6 +1,14 @@
-import { Component, OnDestroy } from '@angular/core'
+import {
+  Component,
+  EventEmitter,
+  HostBinding,
+  Input,
+  OnDestroy,
+  Output,
+} from '@angular/core'
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout'
 import { Subject, takeUntil } from 'rxjs'
+import { faBars } from '@fortawesome/free-solid-svg-icons/faBars'
 
 @Component({
   selector: 'lib-nav-rail',
@@ -8,8 +16,13 @@ import { Subject, takeUntil } from 'rxjs'
   styleUrls: ['./nav-rail.component.scss'],
 })
 export class NavRailComponent implements OnDestroy {
+  @HostBinding('class.expanded') @Input() expanded = false
+  @Output() expandedChange = new EventEmitter<boolean>()
+
+  protected readonly faBars = faBars
   destroyed = new Subject<void>()
   currentScreenSize = ''
+
   constructor(breakpointObserver: BreakpointObserver) {
     breakpointObserver
       .observe([Breakpoints.Small])

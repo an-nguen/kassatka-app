@@ -5268,12 +5268,6 @@ __metadata:
     "@angular/platform-browser": ^15.2.0
     "@angular/platform-browser-dynamic": ^15.2.0
     "@angular/router": ^15.2.0
-    "@fortawesome/angular-fontawesome": 0.12
-    "@fortawesome/fontawesome-free": ^6.4.0
-    "@fortawesome/fontawesome-svg-core": ^6.2.1
-    "@fortawesome/free-brands-svg-icons": ^6.2.1
-    "@fortawesome/free-regular-svg-icons": ^6.2.1
-    "@fortawesome/free-solid-svg-icons": ^6.2.1
     "@types/jasmine": ~4.3.0
     jasmine-core: ~4.5.0
     karma: ~6.4.0
@@ -12784,6 +12778,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "ui-components@workspace:packages/client/projects/ui-components"
   dependencies:
+    "@fortawesome/angular-fontawesome": 0.12
+    "@fortawesome/fontawesome-free": ^6.4.0
+    "@fortawesome/fontawesome-svg-core": ^6.2.1
+    "@fortawesome/free-brands-svg-icons": ^6.2.1
+    "@fortawesome/free-regular-svg-icons": ^6.2.1
+    "@fortawesome/free-solid-svg-icons": ^6.2.1
     tslib: ^2.3.0
   peerDependencies:
     "@angular/common": ^15.2.0

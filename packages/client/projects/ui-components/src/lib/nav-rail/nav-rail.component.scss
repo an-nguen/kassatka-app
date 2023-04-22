@@ -1,13 +1,14 @@
 @use 'default';
 
 :host {
-  --nav-rail-width: var(--uc-nav-rail-width, #{default.$nav-rail-width});
-  --nav-item-height: var(--nav-rail-width);
-  --nav-item-width: var(--nav-rail-width);
+  --nav-rail-width-collapsed: var(--uc-nav-rail-width-collapsed, #{default.$nav-rail-width-collapsed});
+  --nav-rail-width-expanded: var(--uc-nav-rail-width-expanded, #{default.$nav-rail-width-expanded});
+  --nav-item-height: var(--nav-rail-width-collapsed);
+  --nav-item-width: var(--nav-rail-width-collapsed);
 
   display: flex;
   height: 100vh;
-  width: var(--nav-rail-width);
+  width: var(--nav-rail-width-collapsed);
   font: inherit;
 
   color: var(--on-primary-color);
@@ -18,5 +19,9 @@
   align-items: center;
   .nav-list {
     width: 100%;
+  }
+
+  &.expanded {
+    width: var(--nav-rail-width-expanded);
   }
 }

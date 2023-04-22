@@ -7,6 +7,7 @@ import { NavRailComponent } from './nav-rail/nav-rail.component'
 import { NavItemComponent } from './nav-item/nav-item.component'
 import { RoundIconButtonComponent } from './round-icon-button/round-icon-button.component'
 import { AppLayoutComponent } from './app-layout/app-layout.component'
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { AppLayoutComponent } from './app-layout/app-layout.component'
     RoundIconButtonComponent,
     AppLayoutComponent,
   ],
-  imports: [NgForOf, NgStyle, NgIf],
+  imports: [NgForOf, NgStyle, NgIf, FontAwesomeModule],
   exports: [
     UiComponentsComponent,
     DataTableComponent,

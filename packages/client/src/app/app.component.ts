@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { faFileInvoice } from '@fortawesome/free-solid-svg-icons'
+import { faFileInvoice, faBars } from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-root',
@@ -9,4 +9,6 @@ import { faFileInvoice } from '@fortawesome/free-solid-svg-icons'
 export class AppComponent {
   faFileInvoice = faFileInvoice
   title = 'Kassatka App'
+  expanded = false
+  protected readonly faBars = faBars
 }
