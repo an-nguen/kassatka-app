@@ -6,8 +6,7 @@ export function Sortable() {
   return (target: object, propertyKey: string) => {
     let properties = Reflect.getMetadata(sortableMetadataKey, target)
 
-    if (properties)
-      properties.push(propertyKey)
+    if (properties) properties.push(propertyKey)
     else {
       properties = [propertyKey]
       Reflect.defineMetadata(sortableMetadataKey, properties, target)
@@ -15,6 +14,6 @@ export function Sortable() {
   }
 }
 
-export function getSortableClassProps(target: Object) {
+export function getSortableClassProps(target: object) {
   return Reflect.getMetadata(sortableMetadataKey, target)
 }

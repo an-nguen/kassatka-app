@@ -1,0 +1,33 @@
+@use '../../../../../projects/ui-components/src/styles/variables';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  font: var(--uc-font);
+
+  background-color: var(--uc-primary-color);
+  color: var(--uc-on-primary-color);
+
+  padding: variables.$card-padding;
+  border-radius: variables.$card-border-radius;
+  .card-component {
+    display: flex;
+    width: max-content;
+    font-family: var(--uc-font-family);
+
+    &.title {
+      font-size: variables.$card-title-font-size;
+      font-weight: variables.$card-title-font-weight;
+    }
+
+    &.content {
+      font-size: variables.$card-content-font-size;
+    }
+  }
+}
+
+
+
+
+
+
