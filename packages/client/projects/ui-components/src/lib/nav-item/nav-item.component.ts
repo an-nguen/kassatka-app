@@ -7,7 +7,7 @@ import {
   Output,
 } from '@angular/core'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
-import { faBorderNone } from '@fortawesome/free-solid-svg-icons/faBorderNone'
+import { faBorderNone } from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'lib-nav-item',

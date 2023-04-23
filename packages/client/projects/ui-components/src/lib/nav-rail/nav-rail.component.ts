@@ -1,5 +1,4 @@
 import {
-  AfterContentInit,
   Component,
   ContentChildren,
   EventEmitter,
@@ -12,8 +11,8 @@ import {
   SimpleChanges,
 } from '@angular/core'
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout'
-import { Observable, Subject, takeUntil } from 'rxjs'
-import { faBars } from '@fortawesome/free-solid-svg-icons/faBars'
+import { Subject, takeUntil } from 'rxjs'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { NavItemComponent } from '../nav-item/nav-item.component'
 
 @Component({
