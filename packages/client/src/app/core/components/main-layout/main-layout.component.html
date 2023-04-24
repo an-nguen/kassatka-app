@@ -1,0 +1,18 @@
+<app-nav-rail>
+  <app-nav-item [icon]="faChartLine" routerLink="" routerLinkActive="active">
+    Сводная панель
+  </app-nav-item>
+  <app-nav-item [icon]="faReceipt" routerLink="receipts" routerLinkActive="active">
+    Чеки
+  </app-nav-item>
+  <app-nav-item [icon]="faBox" routerLink="products" routerLinkActive="active">
+    Товары
+  </app-nav-item>
+</app-nav-rail>
+<div class="app-content-container">
+  <app-content>
+    <router-outlet></router-outlet>
+  </app-content>
+  <app-footer></app-footer>
+</div>
+

@@ -1,4 +1,15 @@
+@use 'variables';
+
 :host {
   display: flex;
-  width: 100%;
+  min-height: 100%;
+  box-sizing: border-box;
+}
+
+:host-context {
+  font: #{variables.$font};
+  --primary-color: #{variables.$primary-color};
+  --on-primary-color: #{variables.$on-primary-color};
+  --secondary-color: #{variables.$secondary-color};
+  --on-secondary-color: #{variables.$on-secondary-color};
 }

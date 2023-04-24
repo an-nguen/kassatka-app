@@ -1,11 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  HostBinding,
-  HostListener,
-  Input,
-  Output,
-} from '@angular/core'
+import { Component, HostBinding, Input } from '@angular/core'
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 import { faBorderNone } from '@fortawesome/free-solid-svg-icons'
 
@@ -15,14 +8,14 @@ import { faBorderNone } from '@fortawesome/free-solid-svg-icons'
   styleUrls: ['./nav-item.component.scss'],
 })
 export class NavItemComponent {
-  @Input() @HostBinding('class.active') isActive = false
-  @Input() icon: IconProp = faBorderNone
-  @HostBinding('class.expanded') @Input() isExpanded = false
+  @Input()
+  @HostBinding('class.active')
+  public isActive = false
 
-  @Output() clicked = new EventEmitter<void>()
+  @Input()
+  public icon: IconProp = faBorderNone
 
-  @HostListener('click')
-  private onClick() {
-    this.clicked.emit()
-  }
+  @HostBinding('class.expanded')
+  @Input()
+  public isExpanded = false
 }

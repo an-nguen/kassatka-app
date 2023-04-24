@@ -1,19 +1,18 @@
-@use '../../../../../projects/ui-components/src/styles/variables';
+@use "variables";
 
 :host {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   font: var(--uc-font);
 
-  background-color: var(--uc-primary-color);
-  color: var(--uc-on-primary-color);
+  background-color: var(--primary-color);
+  color: var(--on-primary-color);
 
   padding: variables.$card-padding;
   border-radius: variables.$card-border-radius;
   .card-component {
     display: flex;
     width: max-content;
-    font-family: var(--uc-font-family);
 
     &.title {
       font-size: variables.$card-title-font-size;

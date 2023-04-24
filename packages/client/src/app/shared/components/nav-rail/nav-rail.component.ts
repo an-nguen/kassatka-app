@@ -11,7 +11,4 @@ import {
   templateUrl: './nav-rail.component.html',
   styleUrls: ['./nav-rail.component.scss'],
 })
-export class NavRailComponent {
-  @HostBinding('class.expanded') @Input() isExpanded = false
-  @Output() isExpandedChange = new EventEmitter<boolean>()
-}
+export class NavRailComponent {}

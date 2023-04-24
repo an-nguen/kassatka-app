@@ -1,21 +1,20 @@
-@use '../../../../../projects/ui-components/src/styles/variables';
+@use 'variables';
 
 :host {
+  position: fixed;
   display: flex;
-  height: 100vh;
-  width: variables.$nav-rail-width-collapsed;
+  height: 100%;
+  width: variables.$nav-rail-width;
+  overflow-y: auto;
+  z-index: 10;
 
-  color: var(--uc-on-primary-color);
-  background-color: var(--uc-primary-color);
+  background-color: var(--primary-color);
+  color: var(--on-primary-color);
 
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
   .nav-list {
     width: 100%;
-  }
-
-  &.expanded {
-    width: variables.$nav-rail-width-expanded;
   }
 }

@@ -1,0 +1,26 @@
+// Default SCSS variables for library's components
+// Global
+$font: 16px Roboto,Arial,sans-serif;
+$primary-color: #365ca8;
+$on-primary-color: #FFFFFF;
+$secondary-color: #7794ad;
+$on-secondary-color: #FFFFFF;
+// content
+$app-content-margin-x: 2em;
+$app-content-margin-y: 2em;
+// nav-rail
+$nav-rail-width: 80px;
+// nav-item
+$nav-item-height: 56px;
+// card
+$card-title-font-size: 1.25em;
+$card-title-font-weight: 700;
+$card-content-font-size: 1em;
+$card-padding: 1em;
+$card-border-radius: 0.7em;
+// data-table
+$table-border-width: 1px;
+$table-border-style: solid;
+$table-border-radius: 0.8em;
+// footer
+$footer-height: 56px;

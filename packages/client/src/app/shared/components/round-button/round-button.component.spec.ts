@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LayoutComponent } from './layout.component';
+import { RoundButtonComponent } from './round-button.component';
 
-describe('LayoutComponent', () => {
-  let component: LayoutComponent;
-  let fixture: ComponentFixture<LayoutComponent>;
+describe('RoundButtonComponent', () => {
+  let component: RoundButtonComponent;
+  let fixture: ComponentFixture<RoundButtonComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LayoutComponent ]
+      declarations: [ RoundButtonComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LayoutComponent);
+    fixture = TestBed.createComponent(RoundButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

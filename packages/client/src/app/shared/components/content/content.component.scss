@@ -1,0 +1,7 @@
+@use 'variables';
+
+:host {
+  font-size: inherit;
+  font-family: inherit;
+  margin: variables.$app-content-margin-y variables.$app-content-margin-x;
+}

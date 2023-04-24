@@ -7,8 +7,8 @@ import { Component, Input } from '@angular/core'
 })
 export class CardComponent {
   @Input()
-  title = ''
+  public title = ''
 
   @Input()
-  cardContentFontColor = ''
+  public cardContentFontColor = ''
 }
