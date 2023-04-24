@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
-import { DashboardComponent } from './features/dashboard/component/dashboard.component'
+import { DashboardPageComponent } from './features/dashboard/pages/dashboard-page/dashboard-page.component'
 import { ReceiptListComponent } from './features/receipt/components/receipt-list/receipt-list.component'
-import { ProductListComponent } from './features/product/components/product-list/product-list.component'
+import { ProductListComponent } from './features/product/pages/product-list/product-list.component'
 
 const routes: Routes = [
   {
     path: '',
-    component: DashboardComponent,
+    component: DashboardPageComponent,
   },
   {
     path: 'receipts',
