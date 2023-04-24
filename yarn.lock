@@ -5159,6 +5159,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"chart.js@npm:^3.6.0":
+  version: 3.9.1
+  resolution: "chart.js@npm:3.9.1"
+  checksum: 9ab0c0ac01215af0b3f020f2e313030fd6e347b48ed17d5484ee9c4e8ead45e78ae71bea16c397621c386b409ce0b14bf17f9f6c2492cd15b56c0f433efdfff6
+  languageName: node
+  linkType: hard
+
 "chokidar@npm:3.5.3, chokidar@npm:>=3.0.0 <4.0.0, chokidar@npm:^3.0.0, chokidar@npm:^3.5.1, chokidar@npm:^3.5.3":
   version: 3.5.3
   resolution: "chokidar@npm:3.5.3"
@@ -5272,6 +5279,8 @@ __metadata:
     "@fortawesome/free-regular-svg-icons": ^6.2.1
     "@fortawesome/free-solid-svg-icons": ^6.2.1
     "@types/jasmine": ~4.3.0
+    chart.js: ^3.6.0
+    date-fns: ^2.29.3
     jasmine-core: ~4.5.0
     karma: ~6.4.0
     karma-chrome-launcher: ~3.1.0
@@ -5279,6 +5288,7 @@ __metadata:
     karma-jasmine: ~5.1.0
     karma-jasmine-html-reporter: ~2.0.0
     ng-packagr: ^15.2.2
+    ng2-charts: 4.1.1
     rxjs: ~7.8.0
     tslib: ^2.3.0
     typescript: ~4.9.4
@@ -9344,6 +9354,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lodash-es@npm:^4.17.15":
+  version: 4.17.21
+  resolution: "lodash-es@npm:4.17.21"
+  checksum: 05cbffad6e2adbb331a4e16fbd826e7faee403a1a04873b82b42c0f22090f280839f85b95393f487c1303c8a3d2a010048bf06151a6cbe03eee4d388fb0a12d2
+  languageName: node
+  linkType: hard
+
 "lodash.debounce@npm:^4.0.8":
   version: 4.0.8
   resolution: "lodash.debounce@npm:4.0.8"
@@ -10012,6 +10029,22 @@ __metadata:
   bin:
     ng-packagr: cli/main.js
   checksum: f02ada03e08018aa08e49b125e66ae0c98b48d5df3ba742fbf9b6e8eb2a89f66c0dc740568ee9fc9cf132a3bc0ca7049fe3a0c0026d2978d7337f09781194278
+  languageName: node
+  linkType: hard
+
+"ng2-charts@npm:4.1.1":
+  version: 4.1.1
+  resolution: "ng2-charts@npm:4.1.1"
+  dependencies:
+    lodash-es: ^4.17.15
+    tslib: ^2.3.0
+  peerDependencies:
+    "@angular/cdk": ">=14.0.0"
+    "@angular/common": ">=14.0.0"
+    "@angular/core": ">=14.0.0"
+    chart.js: ^3.4.0 || ^4.0.0
+    rxjs: ^6.5.3 || ^7.4.0
+  checksum: 0e10230e297470bd54daf0b596d87e49925172e6170450003c0c3baaf757d096f3f132a70ef544c5884116b190273b89d31d59b0dac54bd05b8b5e084245dba2
   languageName: node
   linkType: hard
 

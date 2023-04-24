@@ -5,6 +5,7 @@ import { SalesBarPlotComponent } from './components/sales-bar-plot/sales-bar-plo
 import { SalesAmountCardComponent } from './components/sales-amount-card/sales-amount-card.component'
 import { SalesReturnsCardComponent } from './components/sales-returns-card/sales-returns-card.component'
 import { SharedModule } from '../../shared/shared.module'
+import { NgChartsModule } from 'ng2-charts'
 
 @NgModule({
   declarations: [
@@ -13,7 +14,7 @@ import { SharedModule } from '../../shared/shared.module'
     SalesAmountCardComponent,
     SalesReturnsCardComponent,
   ],
-  imports: [CommonModule, SharedModule],
+  imports: [CommonModule, SharedModule, NgChartsModule],
   exports: [DashboardPageComponent],
 })
 export class DashboardModule {}

@@ -6,12 +6,16 @@ import { AppComponent } from './app.component'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { SharedModule } from './shared/shared.module'
 import { MainLayoutModule } from './core/components/main-layout/main-layout.module'
-import { DashboardModule } from './features/dashboard/dashboard.module';
-import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found.component';
+import { DashboardModule } from './features/dashboard/dashboard.module'
+import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found.component'
 import { ServerInternalErrorComponent } from './core/components/server-internal-error/server-internal-error.component'
 
 @NgModule({
-  declarations: [AppComponent, PageNotFoundComponent, ServerInternalErrorComponent],
+  declarations: [
+    AppComponent,
+    PageNotFoundComponent,
+    ServerInternalErrorComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
