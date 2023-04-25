@@ -11,7 +11,8 @@
     "outDir": "dist",
     "removeComments": true,
     "esModuleInterop": true,
-    "strict": true
+    "strict": true,
+    "isolatedModules": true
   },
   "include": [
     "./src/**/*.ts",
