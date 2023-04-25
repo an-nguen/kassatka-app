@@ -1,4 +1,4 @@
-import { Page } from './page'
+import { IPage } from './page.interface'
 
 export class PageBuilder<T> {
   private items: T[] = []
@@ -30,7 +30,7 @@ export class PageBuilder<T> {
     return this
   }
 
-  build(): Page<T> {
+  build(): IPage<T> {
     return {
       items: this.items,
       metadata: {
