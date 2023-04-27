@@ -1,4 +1,4 @@
-import { IDocument } from '../domains/internal/document.interface'
+import { IDocument } from '../domains/internal'
 import { IPage } from '../dtos'
 
 export interface IDocumentService {

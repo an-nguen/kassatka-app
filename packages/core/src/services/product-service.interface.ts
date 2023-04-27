@@ -1,13 +1,11 @@
 import { IProduct } from '../domains/internal'
-import { IPage } from '../dtos/page.interface'
+import { IPage } from '../dtos'
+import { ICrudService } from './crud-service.interface'
 
-export interface IProductService {
+export interface IProductService extends ICrudService<number, IProduct> {
   getPage(
     pageNumber: number,
     pageSize: number,
     sortProperty: string
   ): IPage<IProduct>
-  create(product: IProduct): IProduct
-  update(id: number, product: IProduct): IProduct
-  delete(id: number): void
 }
