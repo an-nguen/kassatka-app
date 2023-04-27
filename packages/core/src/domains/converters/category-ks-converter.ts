@@ -2,7 +2,7 @@ import { IConverter } from './converter.interface'
 import { ICategoryKs } from '../kassatka'
 import { ICategory } from '../internal/category.interface'
 
-export class CategoryConverter implements IConverter<ICategoryKs, ICategory> {
+export class CategoryKsConverter implements IConverter<ICategoryKs, ICategory> {
   private _categoryKs?: ICategoryKs
 
   private constructor() {
@@ -10,7 +10,7 @@ export class CategoryConverter implements IConverter<ICategoryKs, ICategory> {
   }
 
   static create() {
-    return new CategoryConverter()
+    return new CategoryKsConverter()
   }
 
   public from(src: ICategoryKs): IConverter<ICategoryKs, ICategory> {
