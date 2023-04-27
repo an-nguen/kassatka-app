@@ -3,30 +3,23 @@ import { IProduct as IProductKs } from '../kassatka/product.interface'
 import { IConverter } from './converter.interface'
 
 export class ProductKsConverter implements IConverter<IProductKs, IProduct> {
-  private _productKs?: IProductKs
-
-  private constructor() {
-    this._productKs = undefined
-  }
+  private constructor() {}
 
   static create(): ProductKsConverter {
     return new ProductKsConverter()
   }
 
-  from(objA: IProductKs): ProductKsConverter {
-    this._productKs = objA
-    return this
-  }
-
-  convertTo(): IProduct {
-    return <IProduct>{
-      barcodes: this._productKs?.barcode ?? [],
-      categoryId: this._productKs?.category_id ?? 0,
-      freePrice: this._productKs?.free_price ?? true,
-      id: this._productKs?.id ?? 0,
-      id1C: this._productKs?.code_1c ?? '',
-      name: this._productKs?.name ?? '',
-      price: this._productKs?.price ?? 0,
+  convert(src: IProductKs): IProduct {
+    const barcodes: Array<string> = []
+    for (const barcode of src.barcode) if (barcode) barcodes.push(barcode)
+    return {
+      barcodes: barcodes,
+      categoryId: src.category_id ?? 0,
+      freePrice: src.free_price ?? true,
+      id: src.id ?? 0,
+      id1C: src.code_1c ?? '',
+      name: src.name ?? '',
+      price: src.price ?? 0,
     }
   }
 }
