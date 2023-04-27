@@ -3,6 +3,6 @@ export interface ICategory {
   code1C?: string
   parentId?: number
   accountId?: number
-  name: string
+  name?: string
   color?: string
 }

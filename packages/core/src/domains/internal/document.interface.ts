@@ -1,3 +1,5 @@
+import { IDocumentLine } from './document-line.interface'
+
 export interface IDocument {
   id?: string
   dateTime?: Date
@@ -7,12 +9,4 @@ export interface IDocument {
   lines: Array<IDocumentLine>
   total: number
   status?: string
-}
-
-export interface IDocumentLine {
-  productId: number
-  price: number
-  quantity: number
-  total: number
-  discount: number
 }

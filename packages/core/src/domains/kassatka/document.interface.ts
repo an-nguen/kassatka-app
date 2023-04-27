@@ -41,7 +41,7 @@ export interface IDocument {
   kassatkaVersion: NumberType
   tax_mode: NumberType
   inner_load_time: NumberType
-  products?: Array<IDocumentProduct>
+  products: Array<IDocumentProduct>
   additional_info?: IAdditionalInfo
   updated_at: StringType
   created_at: StringType
