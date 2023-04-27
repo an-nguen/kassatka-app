@@ -10,6 +10,9 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'prettier',
   ],
+  rules: {
+    '@typescript-eslint/no-empty-function': 'off',
+  },
   overrides: [
     {
       // Angular app
@@ -40,12 +43,12 @@ module.exports = {
         ],
       },
     },
-    // Angular client package
     {
       files: ['./packages/client/**/*.html'],
       extends: ['plugin:@angular-eslint/template/recommended'],
       rules: {},
     },
+    // NestJS Server
     {
       files: ['./packages/server/**/*.ts'],
       rules: {
@@ -53,28 +56,6 @@ module.exports = {
         '@typescript-eslint/explicit-function-return-type': 'off',
         '@typescript-eslint/explicit-module-boundary-types': 'off',
         '@typescript-eslint/no-explicit-any': 'off',
-      },
-    },
-    // Angular library
-    {
-      files: ['./packages/client/projects/**/*.ts'],
-      rules: {
-        '@angular-eslint/directive-selector': [
-          'error',
-          {
-            type: 'attribute',
-            prefix: 'lib',
-            style: 'camelCase',
-          },
-        ],
-        '@angular-eslint/component-selector': [
-          'error',
-          {
-            type: 'element',
-            prefix: 'lib',
-            style: 'kebab-case',
-          },
-        ],
       },
     },
     {
