@@ -9,7 +9,7 @@ export class ProductKsConverter implements IConverter<IProductKs, IProduct> {
     return new ProductKsConverter()
   }
 
-  convert(src: IProductKs): IProduct {
+  public convert(src: IProductKs): IProduct {
     const barcodes: Array<string> = []
     for (const barcode of src.barcode) if (barcode) barcodes.push(barcode)
     return {

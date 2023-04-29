@@ -1,9 +1,8 @@
 import { IDocument } from '../domains/internal'
 import { IPage } from '../dtos'
+import { Observable } from 'rxjs'
 
 export interface IDocumentService {
-  getSales(date: Date): Array<IDocument>
-  getSalesRange(startDate: Date, endDate: Date): IPage<IDocument>
-  getRefunds(date: Date): Array<IDocument>
-  getRefundsRange(startDate: Date, endDate: Date): IPage<IDocument>
+  getSalesRange(startDate: Date, endDate: Date): Observable<IPage<IDocument>>
+  getRefundsRange(startDate: Date, endDate: Date): Observable<IPage<IDocument>>
 }
