@@ -9,6 +9,7 @@ import { FooterComponent } from './components/footer/footer.component'
 import { DataTableComponent } from './components/data-table/data-table.component'
 import { RouterModule } from '@angular/router'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
     FooterComponent,
     DataTableComponent,
   ],
-  imports: [CommonModule, RouterModule, FontAwesomeModule],
+  imports: [CommonModule, HttpClientModule, RouterModule, FontAwesomeModule],
   exports: [
     CardComponent,
     NavRailComponent,
