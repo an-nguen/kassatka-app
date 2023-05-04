@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core'
+import { Component } from '@angular/core'
 import {
   faBox,
   faChartLine,
   faReceipt,
 } from '@fortawesome/free-solid-svg-icons'
+import { environment } from '../../../../environments/environment'
 
 @Component({
   selector: 'app-main-layout',
@@ -12,9 +13,7 @@ import {
 })
 export class MainLayoutComponent {
   protected readonly faReceipt = faReceipt
-
-  @Input()
-  public isExtended = false
   protected readonly faBox = faBox
   protected readonly faChartLine = faChartLine
+  protected repoUrl: string = environment.REPO_URL
 }
