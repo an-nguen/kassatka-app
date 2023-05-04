@@ -5,8 +5,9 @@ import { ReceiptListComponent } from './features/receipt/components/receipt-list
 import { ProductListComponent } from './features/product/pages/product-list/product-list.component'
 
 const routes: Routes = [
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   {
-    path: '',
+    path: 'dashboard',
     component: DashboardPageComponent,
   },
   {
