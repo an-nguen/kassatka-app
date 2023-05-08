@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core'
-import { faGithub } from '@fortawesome/free-brands-svg-icons'
+import { faAngular, faGithub } from '@fortawesome/free-brands-svg-icons'
 
 @Component({
   selector: 'app-footer',
@@ -10,4 +10,5 @@ export class FooterComponent {
   // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input({ required: true }) public repoUrl = ''
   protected readonly faGithub = faGithub
+  protected readonly faAngular = faAngular
 }

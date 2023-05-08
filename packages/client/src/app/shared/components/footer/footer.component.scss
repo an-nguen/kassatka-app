@@ -10,9 +10,22 @@
   border-top: 1px solid #c3c3c3;
 }
 
-span.footer-repo-link {
+span.footer-part {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+
   a, a:visited, a:hover, a:active {
     color: variables.$primary-color;
   }
-  font-size: 2em;
+
+  fa-icon {
+    font-size: 2em;
+    margin: 0 0.1em;
+  }
+
+  &.middle {
+    justify-content: center;
+  }
 }
+
