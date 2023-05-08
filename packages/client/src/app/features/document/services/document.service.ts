@@ -6,7 +6,7 @@ import { HttpClient, HttpParams } from '@angular/common/http'
 import { formatISO } from 'date-fns/fp'
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'any',
 })
 export class DocumentService implements IDocumentService {
   private readonly _documentPath: string

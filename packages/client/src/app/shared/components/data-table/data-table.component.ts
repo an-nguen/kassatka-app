@@ -7,10 +7,10 @@ import { DataTableHeader } from './data-table-header'
   styleUrls: ['./data-table.component.scss'],
 })
 export class DataTableComponent<TData> {
-  @Input()
+  @Input({ required: true })
   public items: TData[] = []
 
-  @Input()
+  @Input({ required: true })
   public headers: DataTableHeader<TData>[] = []
 
   public toRecord(item: TData): Record<string, unknown> {

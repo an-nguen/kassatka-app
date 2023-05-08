@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 import { DashboardPageComponent } from './features/dashboard/pages/dashboard-page/dashboard-page.component'
-import { ReceiptListComponent } from './features/receipt/components/receipt-list/receipt-list.component'
-import { ProductListComponent } from './features/product/pages/product-list/product-list.component'
+import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -12,12 +11,17 @@ const routes: Routes = [
   },
   {
     path: 'receipts',
-    component: ReceiptListComponent,
+    loadChildren: () =>
+      import('./features/receipt/receipt.module').then((m) => m.ReceiptModule),
   },
+
   {
     path: 'products',
-    component: ProductListComponent,
+    loadChildren: () =>
+      import('./features/product/product.module').then((m) => m.ProductModule),
   },
+  { path: 'documents', loadChildren: () => import('./features/document/document.module').then(m => m.DocumentModule) },
+  { path: '**', component: PageNotFoundComponent },
 ]
 
 @NgModule({

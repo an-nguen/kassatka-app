@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core'
-import { IPage, IProduct, IProductService } from '@kassatka/core'
+import { IPage, IProduct } from '@kassatka/core'
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs'
 import { environment } from '../../../../environments/environment'
-import { AbstractService } from '../abstract-service'
+import { AbstractService } from '../../../shared/services/abstract-service'
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'any',
 })
 export class ProductService extends AbstractService<number, IProduct> {
   constructor(private httpClient: HttpClient) {

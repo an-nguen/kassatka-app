@@ -21,7 +21,7 @@ export class AbstractService<TId, TEntity>
     return this._httpClient.put(`${this._url}/${id}`, entity)
   }
 
-  public delete(id: TId): Observable<void> {
+  public delete(id: TId): Observable<unknown> {
     return this._httpClient.delete(`${this._url}/${id}`)
   }
 }

@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core'
 import { ICategory } from '@kassatka/core'
-import { environment } from '../../../../environments/environment'
+import { AbstractService } from '../../../shared/services/abstract-service'
 import { HttpClient } from '@angular/common/http'
-import { AbstractService } from '../abstract-service'
+import { environment } from '../../../../environments/environment'
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'any',
 })
 export class CategoryService extends AbstractService<number, ICategory> {
   constructor(private httpClient: HttpClient) {
