@@ -3,7 +3,7 @@
     "target": "ES2022",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "module": "ES2022",
+    "module": "CommonJS",
     "moduleResolution": "Node",
     "emitDeclarationOnly": true,
     "declaration": true,
@@ -16,7 +16,7 @@
   },
   "include": [
     "./src/**/*.ts",
-    "rollup.config.js"
+    "rollup.config.mjs"
   ],
   "exclude": [
     "dist"
