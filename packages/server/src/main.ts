@@ -7,6 +7,7 @@ import {
 import { ConsoleLogger } from '@nestjs/common'
 import { AppModule } from './app.module'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
+import { APP_CONSTANTS } from './core/constants'
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -15,7 +16,7 @@ async function bootstrap() {
   )
   app.enableCors()
   app.useLogger(app.get(ConsoleLogger))
-  const configService = app.get(ConfigService)
+  const configService = app.get<ConfigService>(ConfigService)
   const swaggerConfig = new DocumentBuilder()
     .setTitle('Kassatka Local API')
     .setDescription('Internal API that works with Kassatka')
@@ -23,7 +24,8 @@ async function bootstrap() {
     .build()
   const document = SwaggerModule.createDocument(app, swaggerConfig)
   SwaggerModule.setup('api', app, document)
-  await app.listen(configService.get('host.port'))
+  const port = configService.get<number>(APP_CONSTANTS.config.portPath)
+  await app.listen(port)
 }
 
 bootstrap()

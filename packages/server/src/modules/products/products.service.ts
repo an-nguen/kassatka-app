@@ -1,31 +1,16 @@
-import { HttpService } from '@nestjs/axios'
-import { AxiosError } from 'axios'
 import { ConsoleLogger, Injectable, OnModuleInit } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
-import { Page, PageBuilder, Product } from '@kassatka/core'
-import { differenceInHours } from 'date-fns'
+import { IPage, IProduct, IProductKs, PageBuilder } from '@kassatka/core'
 import { ProductQueryParamsBuilder } from './product-query-params'
-import {
-  catchError,
-  forkJoin,
-  map,
-  mergeMap,
-  Observable,
-  of,
-  switchMap,
-} from 'rxjs'
-import { ProductSortProperty } from '../../core/dtos/product-sort-property'
+import { map, Observable } from 'rxjs'
 import { PageResponse } from '../../core/dtos/page-response'
-import { APP_CONSTANTS } from '../../core/constants'
 import { KassatkaApiService } from '../../shared/services/kassatka-api/kassatka-api.service'
 
 @Injectable()
 export class ProductsService implements OnModuleInit {
-  private products: Product[] = []
+  private products: IProduct[] = []
 
   private readonly urlSubdirectory: string = 'commodities'
-
-  private lastTimeUpdate: Date
 
   constructor(
     private configService: ConfigService,
@@ -33,74 +18,68 @@ export class ProductsService implements OnModuleInit {
     private readonly logger: ConsoleLogger
   ) {}
 
-  onModuleInit(): void {
+  public onModuleInit(): void {
     this.updateProducts()
   }
 
   public updateProducts() {
-    const builder = ProductQueryParamsBuilder.new()
-    const params = builder
-      .setPage(1)
-      .setPageSize(APP_CONSTANTS.pageSize)
-      .build()
+    this.logger.log('Starting to fetch product list')
 
-    this.kassatkaApiService
-      .get<PageResponse<Product>>(this.urlSubdirectory, {
-        params,
-      })
-      .pipe(
-        catchError((error: AxiosError) => {
-          this.logger.error(error)
-          throw 'API request failed'
-        }),
-        switchMap(({ data }) => {
-          this.lastTimeUpdate = new Date()
-
-          this.products = this.products.concat(data.items)
-          const pages = this.getTotalPages(
-            APP_CONSTANTS.pageSize,
-            data.pager.count
-          )
-          if (!pages) return of(null)
-
-          const requests: Observable<Product[]>[] = []
-
-          // array.map() - do not use, replace with .reduce()
-          // Observable.map() - can use
-          for (let i = 0; i < pages; i++) {
-            const queryParams = builder
-              .setPage(i)
-              .setPageSize(APP_CONSTANTS.pageSize)
-              .build()
-            const request = this.kassatkaApiService
-              .get<PageResponse<Product>>(this.urlSubdirectory, {
-                params: queryParams,
-              })
-              .pipe(map((response) => response.data.items))
-            requests.push(request)
-          }
-
-          return forkJoin(requests)
-        }),
-        mergeMap((r) => r)
-      )
-      .subscribe((items) => {
-        if (!items) {
-          return
-        }
-
-        this.products = this.products.concat(items)
-      })
+    this.getProductCount().subscribe({
+      next: (count) => {
+        this.logger.log(count)
+      },
+      error: (err) => {
+        this.logger.error(err)
+      },
+    })
+    // .pipe(
+    //   mergeMap(({ data }) => {
+    //     const pages = this.getTotalPages(
+    //       APP_CONSTANTS.pageSize,
+    //       data.pager.count
+    //     )
+    //     if (!pages) return of(null)
+    //
+    //
+    //     for (let i = 0; i < pages; i++) {
+    //       const queryParams = builder
+    //         .setPage(i)
+    //         .setPageSize(APP_CONSTANTS.pageSize)
+    //         .build()
+    //       const request = this.kassatkaApiService
+    //         .get<PageResponse<IProductKs>>(this.urlSubdirectory, {
+    //           params: queryParams,
+    //         })
+    //         .pipe(map((response) => response.data.items))
+    //     }
+    //
+    //     return forkJoin(requests)
+    //   })
+    // )
+    // .subscribe((items: IProductKs[]) => {
+    //   if (!items) {
+    //     return
+    //   }
+    //
+    //   const converter = ProductKsConverter.create()
+    //   const convertedItems: IProduct[] = new Array(items.length)
+    //   for (let i = 0; i < items.length; i++) {
+    //     convertedItems[i] = converter.convert(items[i])
+    //   }
+    //   this.products = this.products.concat(convertedItems)
+    //   this.logger.log('The fetching products is complete')
+    // })
   }
 
   public findAll(
     pageNumber: number,
     pageSize: number,
-    sortBy?: ProductSortProperty
-  ): Page<Product> {
+    sortBy?: string
+  ): IPage<IProduct> {
     const start = pageNumber * pageSize
     const end = start + pageSize
-    return PageBuilder.create<Product>()
+    return PageBuilder.create<IProduct>()
       .setPageNumber(pageNumber)
       .setPageSize(pageSize)
       .setPageCount(Math.ceil(this.products.length / pageSize))
@@ -108,7 +87,7 @@ export class ProductsService implements OnModuleInit {
       .build()
   }
 
-  public findById(idD: number): Product {
+  public findById(idD: number): IProduct {
     return this.products.find(({ id }) => id === idD)
   }
 
@@ -119,5 +98,19 @@ export class ProductsService implements OnModuleInit {
       pages = pages + 1
     }
     return Math.round(pages)
+  }
+
+  private getProductCount(): Observable<number> {
+    const params = ProductQueryParamsBuilder.new()
+      .setPage(1)
+      .setPageSize(1)
+      .build()
+    return this.kassatkaApiService
+      .get<PageResponse<IProductKs>>(this.urlSubdirectory, { params })
+      .pipe(
+        map((response) => {
+          return response.data.pager.count
+        })
+      )
   }
 }

@@ -8,7 +8,7 @@ import {
   Req,
 } from '@nestjs/common'
 import { ProductsService } from './products.service'
-import { Page, Product } from '@kassatka/core'
+import { IPage, IProduct } from '@kassatka/core'
 import { ProductQueryRequest } from '../../core/dtos/product-query-request'
 
 @Controller('products')
@@ -19,7 +19,7 @@ export class ProductsController {
   public getPage(
     @Query('page') pageNumber: number,
     @Query('pageSize') pageSize: number
-  ): Page<Product> {
+  ): IPage<IProduct> {
     if (pageSize <= 0 || pageNumber < 0) {
       throw new HttpException(
         {
@@ -33,7 +33,7 @@ export class ProductsController {
   }
 
   @Post('/query')
-  public query(@Req() req: ProductQueryRequest): Page<Product> {
+  public query(@Req() req: ProductQueryRequest): IPage<IProduct> {
     return this.productsService.findAll(
       req.pageNumber,
       req.pageSize,
@@ -42,7 +42,7 @@ export class ProductsController {
   }
 
   @Get(':id')
-  public getById(id: number): Product {
+  public getById(id: number): IProduct {
     return this.productsService.findById(id)
   }
 }
