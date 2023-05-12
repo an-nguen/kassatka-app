@@ -7,7 +7,7 @@ import {
 import { ConsoleLogger } from '@nestjs/common'
 import { AppModule } from './app.module'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
-import { APP_CONSTANTS } from './core/constants'
+import { CONST } from './core/constants'
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -24,7 +24,7 @@ async function bootstrap() {
     .build()
   const document = SwaggerModule.createDocument(app, swaggerConfig)
   SwaggerModule.setup('api', app, document)
-  const port = configService.get<number>(APP_CONSTANTS.config.portPath)
+  const port = configService.get<number>(CONST.config.portPath)
   await app.listen(port)
 }
 

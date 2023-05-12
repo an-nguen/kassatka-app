@@ -1,7 +1,7 @@
 import { ConsoleLogger, Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { HttpService } from '@nestjs/axios'
-import { APP_CONSTANTS } from '../../../core/constants'
+import { CONST } from '../../../core/constants'
 import { AxiosRequestConfig } from 'axios'
 
 // Wrapper around Kassatka API
@@ -14,10 +14,11 @@ export class KassatkaApiService {
     private configService: ConfigService
   ) {
     this.defaultConfig = {
-      baseURL: this.configService.get<string>(APP_CONSTANTS.config.apiUrlPath),
+      baseURL: this.configService.get<string>(CONST.config.apiUrlPath),
       headers: {
-        [APP_CONSTANTS.api.integrationTokenName]:
-          this.configService.get<string>(APP_CONSTANTS.config.apiTokenPath),
+        [CONST.api.integrationTokenName]: this.configService.get<string>(
+          CONST.config.apiTokenPath
+        ),
       },
     }
   }

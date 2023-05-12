@@ -1,7 +1,8 @@
-export const APP_CONSTANTS = {
+export const CONST = {
   api: {
     integrationTokenName: 'integration-token',
     pageSize: 500,
+    concurrentSubsNumber: 2,
   },
   config: {
     portPath: 'port',

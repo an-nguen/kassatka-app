@@ -2,15 +2,28 @@ import { ConsoleLogger, Injectable, OnModuleInit } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { IPage, IProduct, IProductKs, PageBuilder } from '@kassatka/core'
 import { ProductQueryParamsBuilder } from './product-query-params'
-import { map, Observable } from 'rxjs'
+import {
+  forkJoin,
+  map,
+  mergeMap,
+  Observable,
+  range,
+  take,
+  tap,
+  toArray,
+} from 'rxjs'
 import { PageResponse } from '../../core/dtos/page-response'
 import { KassatkaApiService } from '../../shared/services/kassatka-api/kassatka-api.service'
+import { CONST } from '../../core/constants'
+import { performance } from 'perf_hooks'
+import { response } from 'express'
+import { AxiosResponse } from 'axios'
 
 @Injectable()
 export class ProductsService implements OnModuleInit {
-  private products: IProduct[] = []
+  private products: IProduct[]
 
-  private readonly urlSubdirectory: string = 'commodities'
+  private readonly urlSubdirectory: string = '/commodities'
 
   constructor(
     private configService: ConfigService,
@@ -25,51 +38,45 @@ export class ProductsService implements OnModuleInit {
   public updateProducts() {
     this.logger.log('Starting to fetch product list')
 
-    this.getProductCount().subscribe({
-      next: (count) => {
-        this.logger.log(count)
-      },
-      error: (err) => {
-        this.logger.error(err)
-      },
-    })
-    // .pipe(
-    //   mergeMap(({ data }) => {
-    //     const pages = this.getTotalPages(
-    //       APP_CONSTANTS.pageSize,
-    //       data.pager.count
-    //     )
-    //     if (!pages) return of(null)
-    //
-    //
-    //     for (let i = 0; i < pages; i++) {
-    //       const queryParams = builder
-    //         .setPage(i)
-    //         .setPageSize(APP_CONSTANTS.pageSize)
-    //         .build()
-    //       const request = this.kassatkaApiService
-    //         .get<PageResponse<IProductKs>>(this.urlSubdirectory, {
-    //           params: queryParams,
-    //         })
-    //         .pipe(map((response) => response.data.items))
-    //     }
-    //
-    //     return forkJoin(requests)
-    //   })
-    // )
-    // .subscribe((items: IProductKs[]) => {
-    //   if (!items) {
-    //     return
-    //   }
-    //
-    //   const converter = ProductKsConverter.create()
-    //   const convertedItems: IProduct[] = new Array(items.length)
-    //   for (let i = 0; i < items.length; i++) {
-    //     convertedItems[i] = converter.convert(items[i])
-    //   }
-    //   this.products = this.products.concat(convertedItems)
-    //   this.logger.log('The fetching products is complete')
-    // })
+    this._getProductCount()
+      .pipe(take(1))
+      .subscribe({
+        next: (overallCount) => {
+          const queryParamsBuilder = ProductQueryParamsBuilder.new()
+          const requestCount = this.calcPageCount(
+            CONST.api.pageSize,
+            overallCount
+          )
+
+          const requests = new Array<
+            Observable<AxiosResponse<PageResponse<IProductKs>>>
+          >(requestCount)
+          for (let i = 0; i < requestCount; i++) {
+            requests[i] = this.kassatkaApiService.get<PageResponse<IProductKs>>(
+              this.urlSubdirectory,
+              {
+                params: queryParamsBuilder
+                  .setPage(i + 1)
+                  .setPageSize(CONST.api.pageSize)
+                  .build(),
+              }
+            )
+          }
+
+          forkJoin<AxiosResponse<PageResponse<IProductKs>>[]>(
+            requests
+          ).subscribe({
+            next: (responses) => {
+              for (let i = 0; i < responses.length; i++) {
+                this.products.concat(...responses[i].data.items)
+              }
+            },
+          })
+        },
+        error: (err) => {
+          this.logger.error(err)
+        },
+      })
   }
 
   public findAll(
@@ -91,16 +98,14 @@ export class ProductsService implements OnModuleInit {
     return this.products.find(({ id }) => id === idD)
   }
 
-  private getTotalPages(pageSize: number, rowCount: number): number {
-    let pages = rowCount / pageSize
-    if (pages == 0) return 0
-    if (pages > 0 && rowCount % pageSize > 0) {
-      pages = pages + 1
-    }
-    return Math.round(pages)
+  private calcPageCount(
+    itemCountOnPage: number,
+    overallItemCount: number
+  ): number {
+    return Math.ceil(overallItemCount / itemCountOnPage)
   }
 
-  private getProductCount(): Observable<number> {
+  private _getProductCount(): Observable<number> {
     const params = ProductQueryParamsBuilder.new()
       .setPage(1)
       .setPageSize(1)
@@ -112,5 +117,16 @@ export class ProductsService implements OnModuleInit {
           return response.data.pager.count
         })
       )
+  }
+
+  private _handleResponses(
+    overallCount: number,
+    responses: AxiosResponse<PageResponse<IProductKs>>[]
+  ) {
+    const listIndex = 0
+    const convertedList = new Array(overallCount)
+    for (const response of responses) {
+    }
+    this.products = convertedList
   }
 }

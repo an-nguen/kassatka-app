@@ -9,6 +9,7 @@
   "license": "MIT",
   "scripts": {
     "build:core": "yarn workspace @kassatka/core build",
+    "dev:core": "yarn workspace @kassatka/core dev",
     "dev:server": "yarn workspace server start:dev",
     "dev:client": "yarn workspace client start"
   },
