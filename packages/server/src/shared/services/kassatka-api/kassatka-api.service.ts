@@ -1,7 +1,7 @@
 import { ConsoleLogger, Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { HttpService } from '@nestjs/axios'
-import { CONST } from '../../../core/constants'
+import { CONST } from 'core/constants'
 import { AxiosRequestConfig } from 'axios'
 
 // Wrapper around Kassatka API

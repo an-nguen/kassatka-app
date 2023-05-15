@@ -5,9 +5,9 @@ import {
   NestFastifyApplication,
 } from '@nestjs/platform-fastify'
 import { ConsoleLogger } from '@nestjs/common'
-import { AppModule } from './app.module'
+import { AppModule } from 'app.module'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
-import { CONST } from './core/constants'
+import { CONST } from 'core/constants'
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -24,7 +24,7 @@ async function bootstrap() {
     .build()
   const document = SwaggerModule.createDocument(app, swaggerConfig)
   SwaggerModule.setup('api', app, document)
-  const port = configService.get<number>(CONST.config.portPath)
+  const port = configService.get<number>(CONST.config.portPath) || 8080
   await app.listen(port)
 }
 
