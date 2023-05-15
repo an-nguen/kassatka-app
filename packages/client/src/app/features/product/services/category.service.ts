@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core'
 import { ICategory } from '@kassatka/core'
-import { AbstractService } from '../../../shared/services/abstract-service'
+import { AbstractService } from 'src/app/shared/services/abstract-service'
 import { HttpClient } from '@angular/common/http'
-import { environment } from '../../../../environments/environment'
+import { environment } from 'src/environments/environment'
 
 @Injectable({
   providedIn: 'any',

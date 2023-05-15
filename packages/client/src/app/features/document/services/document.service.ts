@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 import { IDocument, IDocumentService, IPage } from '@kassatka/core'
 import { Observable } from 'rxjs'
-import { environment } from '../../../../environments/environment'
+import { environment } from 'src/environments/environment'
 import { HttpClient, HttpParams } from '@angular/common/http'
 import { formatISO } from 'date-fns/fp'
 
@@ -21,7 +21,7 @@ export class DocumentService implements IDocumentService {
     startDate: Date,
     endDate: Date
   ): Observable<IPage<IDocument>> {
-    return this.httpClient.get(
+    return this.httpClient.get<IPage<IDocument>>(
       `${environment.BACKEND_URL}/${this._documentPath}/refunds`,
       {
         params: new HttpParams()
@@ -35,7 +35,7 @@ export class DocumentService implements IDocumentService {
     startDate: Date,
     endDate: Date
   ): Observable<IPage<IDocument>> {
-    return this.httpClient.get(
+    return this.httpClient.get<IPage<IDocument>>(
       `${environment.BACKEND_URL}/${this._documentPath}/sales`,
       {
         params: new HttpParams()

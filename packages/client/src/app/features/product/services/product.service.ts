@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core'
 import { IPage, IProduct } from '@kassatka/core'
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs'
-import { environment } from '../../../../environments/environment'
-import { AbstractService } from '../../../shared/services/abstract-service'
+import { environment } from 'src/environments/environment'
+import { AbstractService } from 'src/app/shared/services/abstract-service'
 
 @Injectable({
   providedIn: 'any',
@@ -21,7 +21,7 @@ export class ProductService extends AbstractService<number, IProduct> {
     pageSize: number,
     sortProperty: string
   ): Observable<IPage<IProduct>> {
-    return this._httpClient.post(
+    return this._httpClient.post<IPage<IProduct>>(
       `${environment.BACKEND_URL}/${this._url}/page`,
       {
         pageNumber,
