@@ -4,8 +4,8 @@ export interface ProductQueryParams {
 }
 
 export class ProductQueryParamsBuilder {
-  page: number
-  size: number
+  page: number = 0
+  size: number = 0
 
   static new(): ProductQueryParamsBuilder {
     const builder = new ProductQueryParamsBuilder()

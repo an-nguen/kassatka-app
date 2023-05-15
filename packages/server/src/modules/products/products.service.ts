@@ -1,27 +1,23 @@
+import {
+  IPage,
+  IProduct,
+  IProductKs,
+  PageBuilder,
+  ProductKsConverter,
+} from '@kassatka/core'
 import { ConsoleLogger, Injectable, OnModuleInit } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
-import { IPage, IProduct, IProductKs, PageBuilder } from '@kassatka/core'
-import { ProductQueryParamsBuilder } from './product-query-params'
-import {
-  forkJoin,
-  map,
-  mergeMap,
-  Observable,
-  range,
-  take,
-  tap,
-  toArray,
-} from 'rxjs'
-import { PageResponse } from '../../core/dtos/page-response'
-import { KassatkaApiService } from '../../shared/services/kassatka-api/kassatka-api.service'
-import { CONST } from '../../core/constants'
-import { performance } from 'perf_hooks'
-import { response } from 'express'
 import { AxiosResponse } from 'axios'
+import { CONST } from 'core/constants'
+import { PageResponse } from 'core/dtos/page-response'
+import { forkJoin, map, mergeMap, Observable, of, take } from 'rxjs'
+import { KsPageResp } from 'shared/dtos/ks-page-resp'
+import { KassatkaApiService } from 'shared/services/kassatka-api/kassatka-api.service'
+import { ProductQueryParamsBuilder } from './product-query-params'
 
 @Injectable()
 export class ProductsService implements OnModuleInit {
-  private products: IProduct[]
+  private products: IProduct[] = []
 
   private readonly urlSubdirectory: string = '/commodities'
 
@@ -37,41 +33,43 @@ export class ProductsService implements OnModuleInit {
 
   public updateProducts() {
     this.logger.log('Starting to fetch product list')
+    const queryParamsBuilder = ProductQueryParamsBuilder.new()
 
     this._getProductCount()
-      .pipe(take(1))
-      .subscribe({
-        next: (overallCount) => {
-          const queryParamsBuilder = ProductQueryParamsBuilder.new()
-          const requestCount = this.calcPageCount(
-            CONST.api.pageSize,
-            overallCount
+      .pipe(
+        take(1),
+        map((overallCount: number) => {
+          return {
+            overallCount,
+            requestCount: this.calcPageCount(CONST.api.pageSize, overallCount),
+          }
+        }),
+        mergeMap(({ overallCount, requestCount }) => {
+          const requests: Observable<KsPageResp<IProductKs>>[] = new Array(
+            requestCount
           )
-
-          const requests = new Array<
-            Observable<AxiosResponse<PageResponse<IProductKs>>>
-          >(requestCount)
           for (let i = 0; i < requestCount; i++) {
+            const params = queryParamsBuilder
+              .setPage(i + 1)
+              .setPageSize(CONST.api.pageSize)
+              .build()
             requests[i] = this.kassatkaApiService.get<PageResponse<IProductKs>>(
               this.urlSubdirectory,
               {
-                params: queryParamsBuilder
-                  .setPage(i + 1)
-                  .setPageSize(CONST.api.pageSize)
-                  .build(),
+                params,
               }
             )
           }
 
-          forkJoin<AxiosResponse<PageResponse<IProductKs>>[]>(
-            requests
-          ).subscribe({
-            next: (responses) => {
-              for (let i = 0; i < responses.length; i++) {
-                this.products.concat(...responses[i].data.items)
-              }
-            },
+          return forkJoin({
+            overallCount: of(overallCount),
+            responses: forkJoin(requests),
           })
+        })
+      )
+      .subscribe({
+        next: (result) => {
+          this._handleResponses(result.overallCount, result.responses)
         },
         error: (err) => {
           this.logger.error(err)
@@ -94,7 +92,7 @@ export class ProductsService implements OnModuleInit {
       .build()
   }
 
-  public findById(idD: number): IProduct {
+  public findById(idD: number): IProduct | undefined {
     return this.products.find(({ id }) => id === idD)
   }
 
@@ -123,10 +121,21 @@ export class ProductsService implements OnModuleInit {
     overallCount: number,
     responses: AxiosResponse<PageResponse<IProductKs>>[]
   ) {
-    const listIndex = 0
-    const convertedList = new Array(overallCount)
-    for (const response of responses) {
+    const converter = ProductKsConverter.create()
+    let productsIndex = 0
+    this.products = new Array(overallCount)
+    for (
+      let responseIndex = 0;
+      responseIndex < responses.length;
+      responseIndex++
+    ) {
+      const response = responses[responseIndex]
+
+      for (let i = 0; i < response.data.items.length; i++) {
+        const item = response.data.items[i]
+        this.products[productsIndex] = converter.convert(item)
+        productsIndex++
+      }
     }
-    this.products = convertedList
   }
 }
