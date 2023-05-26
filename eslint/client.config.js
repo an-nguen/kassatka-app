@@ -1,6 +1,6 @@
 import angularEslint from '@angular-eslint/eslint-plugin'
 import angularEslintTemplate from '@angular-eslint/eslint-plugin-template'
-import prettier from 'eslint-config-prettier'
+import prettierConfig from 'eslint-config-prettier'
 import { defaultTsConfig } from './default-ts-config.js'
 
 const CLIENT_GLOB = './packages/client'
@@ -10,10 +10,10 @@ export const clientTsConfig = {
   plugins: {
     ...defaultTsConfig.plugins,
     '@angular-eslint': angularEslint,
-    prettier,
   },
   rules: {
     ...defaultTsConfig.rules,
+    ...prettierConfig.rules,
     '@angular-eslint/directive-selector': [
       'error',
       {
