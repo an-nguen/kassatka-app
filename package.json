@@ -26,6 +26,8 @@
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.27.5",
     "prettier": "^2.8.8",
+    "semver": "^7.5.3",
+    "socket.io-parser": "^4.2.4",
     "typescript": "^5.1.3"
   }
 }
