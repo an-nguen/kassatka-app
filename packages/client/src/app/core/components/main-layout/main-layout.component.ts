@@ -1,10 +1,7 @@
-import { Component } from '@angular/core'
-import {
-  faBox,
-  faChartLine,
-  faReceipt,
-} from '@fortawesome/free-solid-svg-icons'
-import { environment } from '../../../../environments/environment'
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Component, inject } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map, shareReplay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-main-layout',
@@ -12,8 +9,12 @@ import { environment } from '../../../../environments/environment'
   styleUrls: ['./main-layout.component.scss'],
 })
 export class MainLayoutComponent {
-  protected readonly faReceipt = faReceipt
-  protected readonly faBox = faBox
-  protected readonly faChartLine = faChartLine
-  protected repoUrl: string = environment.REPO_URL
+  private breakpointObserver = inject(BreakpointObserver);
+
+  public isHandset$: Observable<boolean> = this.breakpointObserver
+    .observe(Breakpoints.Handset)
+    .pipe(
+      map((result) => result.matches),
+      shareReplay()
+    );
 }

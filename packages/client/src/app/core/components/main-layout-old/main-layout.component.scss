@@ -1,0 +1,16 @@
+@use 'variables';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.app-content-container {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: variables.$nav-rail-width;
+  width: 100%;
+  height: 100%;
+}

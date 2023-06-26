@@ -1,18 +1,25 @@
-<app-nav-rail>
-  <app-nav-item [icon]="faChartLine" routerLink="/dashboard" routerLinkActive="active">
-    Сводная панель
-  </app-nav-item>
-  <app-nav-item [icon]="faReceipt" routerLink="/receipts" routerLinkActive="active">
-    Чеки
-  </app-nav-item>
-  <app-nav-item [icon]="faBox" routerLink="/products" routerLinkActive="active">
-    Товары
-  </app-nav-item>
-</app-nav-rail>
-<div class="app-content-container">
-  <app-content>
-    <router-outlet></router-outlet>
-  </app-content>
-  <app-footer [repoUrl]="repoUrl"></app-footer>
-</div>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+    <div class="sidenav-items">
+      <button mat-icon-button routerLink="dashboard"><mat-icon>dashboard</mat-icon></button>
+      <button mat-icon-button routerLink="documents"><mat-icon>article</mat-icon></button>
+      <button mat-icon-button routerLink="products"><mat-icon>inventory</mat-icon></button>
+    </div>
 
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Kassatka</span>
+    </mat-toolbar>
+    <div class="content">
+      <ng-content></ng-content>
+    </div>
+    <div class="footer"></div>
+    <!-- Add Content Here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>
