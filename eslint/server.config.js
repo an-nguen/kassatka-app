@@ -1,5 +1,5 @@
-import { defaultTsConfig } from './default-ts-config.js'
 import prettierConfig from 'eslint-config-prettier'
+import { defaultTsConfig } from './default-ts-config.js'
 
 const SERVER_GLOB = './packages/server'
 

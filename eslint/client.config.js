@@ -11,6 +11,7 @@ export const clientTsConfig = {
     ...defaultTsConfig.plugins,
     '@angular-eslint': angularEslint,
   },
+  files: [`${CLIENT_GLOB}/packages/client/**/*.ts`],
   rules: {
     ...defaultTsConfig.rules,
     ...prettierConfig.rules,
