@@ -1,5 +1,5 @@
 {
   "editor.formatOnSave": true,
-  "cSpell.words": ["Kassatka"],
+  "cSpell.words": ["barcodes", "ifns", "Kassatka", "ogrn", "summ"],
   "eslint.experimental.useFlatConfig": true
 }
