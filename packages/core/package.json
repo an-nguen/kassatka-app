@@ -4,20 +4,20 @@
   "private": true,
   "main": "dist/core.js",
   "module": "dist/core.mjs",
-  "typings": "dist/core.d.ts",
+  "types": "dist/core.d.ts",
   "scripts": {
     "build": "rollup --config",
     "dev": "rollup -c -w"
   },
   "devDependencies": {
-    "@rollup/plugin-node-resolve": "^15.0.2",
+    "@rollup/plugin-node-resolve": "^15.1.0",
     "@rollup/plugin-typescript": "^11.1.1",
     "date-fns": "^2.30.0",
-    "esbuild": "^0.17.19",
-    "rollup": "^3.23.0",
+    "esbuild": "^0.18.9",
+    "rollup": "^3.25.2",
     "rollup-plugin-dts": "^5.3.0",
     "rollup-plugin-esbuild": "^5.0.0",
-    "tslib": "^2.5.2",
-    "typescript": "^5.0.4"
+    "tslib": "^2.5.3",
+    "typescript": "^5.1.3"
   }
 }

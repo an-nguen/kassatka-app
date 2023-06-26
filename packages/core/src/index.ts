@@ -1,13 +1,13 @@
 // Kassatka
-export * from './domains/kassatka'
+export * from './domains/kassatka';
 // Internal
-export * from './domains/internal'
+export * from './domains/internal';
 
 /// Services
-export * from './services'
+export * from './services';
 
 /// Converters
-export * from './domains/converters'
+export * from './domains/converters';
 
 /// Pagination
-export * from './dtos'
+export * from './dtos';

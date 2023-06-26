@@ -1,33 +1,33 @@
-import { IPage } from './page.interface'
+import { IPage } from './page.interface';
 
 export class PageBuilder<T> {
-  private items: T[] = []
-  private pageNumber = 0
-  private pageSize = 0
-  private pageCount = 0
+  private items: T[] = [];
+  private pageNumber = 0;
+  private pageSize = 0;
+  private pageCount = 0;
 
   static create<T>(): PageBuilder<T> {
-    return new PageBuilder()
+    return new PageBuilder();
   }
 
   setItems(items: T[]): PageBuilder<T> {
-    this.items = items
-    return this
+    this.items = items;
+    return this;
   }
 
   setPageNumber(pageNumber: number): PageBuilder<T> {
-    this.pageNumber = pageNumber
-    return this
+    this.pageNumber = pageNumber;
+    return this;
   }
 
   setPageSize(pageSize: number): PageBuilder<T> {
-    this.pageSize = pageSize
-    return this
+    this.pageSize = pageSize;
+    return this;
   }
 
   setPageCount(count: number) {
-    this.pageCount = count
-    return this
+    this.pageCount = count;
+    return this;
   }
 
   build(): IPage<T> {
@@ -38,6 +38,6 @@ export class PageBuilder<T> {
         pageSize: this.pageSize,
         pageCount: this.pageCount,
       },
-    }
+    };
   }
 }

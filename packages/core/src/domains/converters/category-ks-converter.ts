@@ -1,11 +1,11 @@
-import { IConverter } from './converter.interface'
-import { ICategoryKs } from '../kassatka'
-import { ICategory } from '../internal'
+import { ICategory } from '../internal';
+import { ICategoryKs } from '../kassatka';
+import { IConverter } from './converter.interface';
 
 export class CategoryKsConverter implements IConverter<ICategoryKs, ICategory> {
   private constructor() {}
 
-  public static create = () => new CategoryKsConverter()
+  public static create = () => new CategoryKsConverter();
 
   public convert(obj: ICategoryKs): ICategory {
     return {
@@ -15,6 +15,6 @@ export class CategoryKsConverter implements IConverter<ICategoryKs, ICategory> {
       id: obj.id || 0,
       name: obj.name || undefined,
       parentId: obj.parent_id || undefined,
-    }
+    };
   }
 }
